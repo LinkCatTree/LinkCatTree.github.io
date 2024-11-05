@@ -3,7 +3,7 @@
   <entry>
     <title>FHQ Treap 详解</title>
     <url>/posts/1918694436/</url>
-    <content><![CDATA[<h1 id="1）FHQ-Treap-基本功能理论与实现"><a href="#1）FHQ-Treap-基本功能理论与实现" class="headerlink" title="1）FHQ-Treap 基本功能理论与实现"></a>1）FHQ-Treap 基本功能理论与实现</h1><p>不同于经典的基于<a href="https://blog.csdn.net/zhaochuanfei666/article/details/110518539">左旋、右旋的 Treap</a>，FHQ-Treap 是基于分裂与合并的的一种 Treap。虽然两者操作方式完全不同，但产生的结果是一样的。而且，FHQ-Treap 具有<strong>好写</strong>（打板子超快）、<strong>好理解</strong>（左旋右旋我到现在还没搞明白）以及可持久化、区间翻转、移动等等一大坨优点。</p>
+    <content><![CDATA[<h1 id="1）FHQ-Treap-基本功能理论与实现"><a href="#1）FHQ-Treap-基本功能理论与实现" class="headerlink" title="1）FHQ-Treap 基本功能理论与实现"></a>1）FHQ-Treap 基本功能理论与实现</h1><p>不同于经典的基于<a href="https://blog.csdn.net/zhaochuanfei666/article/details/110518539">左旋、右旋的 Treap(Splay)</a>，FHQ-Treap 是基于分裂与合并的的一种 Treap。虽然两者操作方式完全不同，但产生的结果是一样的。而且，FHQ-Treap 具有<strong>好写</strong>（打板子超快）、<strong>好理解</strong>（左旋右旋我到现在还没搞明白）以及可持久化、区间翻转、移动等等诸多优点。</p>
 <p>（%%% FHQ 大佬）</p>
 <span id="more"></span>
 <p>接下来会详细介绍 FHQ-Treap。</p>
@@ -11,16 +11,23 @@
 <p>比如，可以通过创建一个只有根节点的 Treap，然后再和原来的 Treap 合并，这就是插入节点。</p>
 <p>再比如，可以通过分裂开 Treap，把某个节点分离开，合并其他的节点，这就是删除节点。</p>
 <p>……如此好用、好理解的 FHQ-Treap 如何实现呢？</p>
-<p>Treap 的话就不多说了，可以参考上面的博客；那么如何在<strong>分裂+合并</strong>操作中维护这个 Treap 呢？</p>
+<details class="note info no-icon"><summary><p>Treap 是什么？</p>
+</summary>
+<p>了解 Treap，我么要先了解 BST：二叉搜索树。</p>
+<p>BST 中，任意一个结点的左子树（假设它有）上所有点的值都比该点小，而右子树上所有点的值都该点大。由此可以得出，其中序遍历与所有结点上的值从小到大进行排序后的结果相同。该数据结构期望单次操作（插入/查询）的复杂度为 $\mathcal{O}(\log n)$，但是最坏情况下可以被卡到 $\mathcal{O}(n)$。</p>
+<p>对此，我们可以使用随机化的思想，给每一个点附上一个随机的权值（或称优先级），通过维护优先级的方法来调整 BST 的形态，Treap 就是这一类数据结构。</p>
+
+</details>
 <p>众所周知，Treap 要维护的无非两点：</p>
 <ol>
-<li><p>键值（key），满足 $左儿子键值 \leq 该节点键值 \leq 右儿子键值$</p>
+<li><p>键值（key），满足：左儿子键值 $\leq$ 该节点键值 $\leq$ 右儿子键值</p>
 </li>
-<li><p>优先级（pri），满足 $左儿子优先级或右儿子的优先级 \leq 该节点的优先级$</p>
+<li><p>优先级（pri），满足：左儿子优先级或右儿子的优先级 $\leq$ 该节点的优先级。</p>
 </li>
 </ol>
+<p>其中，键值一般是我们<strong>需要维护</strong>的值，而优先级一般是为了平衡 BST 的形态、提高 Treap 效率而采用的。</p>
 <p>我们需要在分裂操作与合并操作中根据这两点对 Treap 进行维护（因为其他操作都建立在这两个操作上）。</p>
-<p>我们定义一个结构体，记录 Treap 上每个点的信息。</p>
+<p>我们可以定义一个结构体，记录 Treap 上每个点的信息。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> lsn,rsn;</span><br><span class="line">    <span class="type">int</span> key,pri,siz;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> tSize=<span class="number">0</span>,root=<span class="number">0</span>;</span><br><span class="line">Node treap[MS];</span><br></pre></td></tr></table></figure>
 <p>其中 <code>tSize</code> 是节点个数，<code>root</code> 是 Treap 的根。这里使用了数组的方式存储 Treap。</p>
 <h2 id="1-2）操作一：分裂（Split）"><a href="#1-2）操作一：分裂（Split）" class="headerlink" title="1.2）操作一：分裂（Split）"></a>1.2）操作一：分裂（Split）</h2><p>Split 需要考虑四个参数，分别是当前遍历到的节点、分裂的标准、传递回的两棵树的根。</p>
