@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"linkcattree.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="博客功能测试">
+    <meta name="description" content="一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="https://linkcattree.github.io/posts/3632233996/index.html">
+<meta property="og:title" content="P10036 题解">
+<meta property="og:url" content="https://linkcattree.github.io/posts/410536798/index.html">
 <meta property="og:site_name" content="LinkCatTree">
-<meta property="og:description" content="博客功能测试">
+<meta property="og:description" content="一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-05T01:01:58.000Z">
-<meta property="article:modified_time" content="2024-11-05T04:47:11.399Z">
+<meta property="article:published_time" content="2024-11-12T04:57:23.000Z">
+<meta property="article:modified_time" content="2024-11-12T04:59:20.167Z">
 <meta property="article:author" content="LinkCatTree">
-<meta property="article:tag" content="测试">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://linkcattree.github.io/posts/3632233996/">
+<link rel="canonical" href="https://linkcattree.github.io/posts/410536798/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://linkcattree.github.io/posts/3632233996/","path":"posts/3632233996/","title":"test"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://linkcattree.github.io/posts/410536798/","path":"posts/410536798/","title":"P10036 题解"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>test | LinkCatTree</title>
+<title>P10036 题解 | LinkCatTree</title>
   
 
 
@@ -99,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -112,7 +112,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#H1"><span class="nav-number">1.</span> <span class="nav-text">H1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#H2"><span class="nav-number">1.1.</span> <span class="nav-text">H2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#H3"><span class="nav-number">1.1.1.</span> <span class="nav-text">H3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#H4"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">H4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#H5"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">H5</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Highlight"><span class="nav-number">1.2.</span> <span class="nav-text">Highlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LaTeX"><span class="nav-number">1.3.</span> <span class="nav-text">LaTeX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown"><span class="nav-number">1.4.</span> <span class="nav-text">Markdown</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -168,7 +167,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://linkcattree.github.io/posts/3632233996/">
+    <link itemprop="mainEntityOfPage" href="https://linkcattree.github.io/posts/410536798/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/head.jpg">
@@ -181,12 +180,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="test | LinkCatTree">
-      <meta itemprop="description" content="博客功能测试">
+      <meta itemprop="name" content="P10036 题解 | LinkCatTree">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          test
+          P10036 题解
         </h1>
 
         <div class="post-meta-container">
@@ -198,7 +197,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-11-05 09:01:58 / 修改时间：12:47:11" itemprop="dateCreated datePublished" datetime="2024-11-05T09:01:58+08:00">2024-11-05</time>
+      <time title="创建时间：2024-11-12 12:57:23 / 修改时间：12:59:20" itemprop="dateCreated datePublished" datetime="2024-11-12T12:57:23+08:00">2024-11-12</time>
     </span>
 
   
@@ -211,16 +210,34 @@
     </span>
 </div>
 
-            <div class="post-description">博客功能测试</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello World&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h2><p>$x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$</p>
-<h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><p><strong>粗体</strong>_斜体_<strong><em>又粗又斜</em></strong><del>划掉</del>。</p>
+    <div class="post-body" itemprop="articleBody"><p>一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。</p>
+<span id="more"></span>
+<p>根据题意，$b_x+b_y+b_z=0$，假设 $b_x$ 对应的区间为 $a_{i’+1} \cdots a_i$，$b_y$ 对应 $a_{j’+1} \cdots a_j$，$b_z$ 对应 $a_{k’+1} \cdots a_k$。我们可以使用前缀和优化这个式子：$s_i-s_{i’}+s_j-s_{j’}+s_k-s_{k’}=0$，其中 $s_x=\sum_{i=1}^x a_i$。</p>
+<p>但是我们发现枚举式子右侧的六个变量时间复杂度为 $\mathcal{O}(n^6)$，无法接受，那么我们可以把三项移到右侧，将式子变为：$s_i-s_{i’}+s_j=s_{j’}-s_k+s_{k’}$。这样对两边的枚举时间复杂度均降为 $\mathcal{O}(n^3)$，可以分开枚举（注意实现时要保证 $j’&lt;j$，对此我们可以在计算 $j$ 前更新一遍 $j’$，这样可以在不破坏效率的情况下维护 $j’&lt;j$，具体可见代码）</p>
+<p>但我们发现以上算法有两个问题：</p>
+<ol>
+<li><p>无法保证 $x&lt;y&lt;z$，换句话说就是会重复计算。</p>
+</li>
+<li><p>可能会统计到不合法的答案（如两个相同的区间）</p>
+</li>
+</ol>
+<p>我们重新观察式子，发现：</p>
+<ol>
+<li><p>当 $x,y,z$ 互不相等时，共会计算 $3!=6$ 次。</p>
+</li>
+<li><p>当 $x,y,z$ 中有且仅有两数相等时（不合法），会计算 $2$ 次。</p>
+</li>
+<li><p>当 $x=y=z$（不合法）时，会计算 $1$ 次。</p>
+</li>
+</ol>
+<p>于是我们可以再 $\mathcal{O}(n^2)$ 枚举相等的数，减掉不合法的情况；最终答案即为剩下的合法计数的 $\frac16$。如果对实现或思路有问题，可参考代码（作者太弱了降不太清楚 QAQ）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">505</span>,Mx=<span class="number">3e7</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> n,a[N],sum[N],f[Mx],base;</span><br><span class="line">map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; g;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">id</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> <span class="built_in">max</span>(x-base<span class="number">+1</span>,<span class="number">0</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="type">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),sum[i]=sum[i<span class="number">-1</span>]+a[i];</span><br><span class="line">        base=<span class="built_in">max</span>(base,sum[i]-tmp),tmp=<span class="built_in">min</span>(tmp,sum[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) g[sum[i]-sum[i_]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    base=tmp-base;</span><br><span class="line">    <span class="comment">// s[i]-s[i&#x27;]+s[j]=s[j&#x27;]-s[k]+s[k&#x27;]</span></span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">        <span class="type">int</span> j_=j<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k_=<span class="number">0</span>;k_&lt;k;k_++)</span><br><span class="line">                f[<span class="built_in">id</span>(sum[j_]-sum[k]+sum[k_])]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++)</span><br><span class="line">                ans+=(ll)f[<span class="built_in">id</span>(sum[i]-sum[i_]+sum[j])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) &#123;</span><br><span class="line">            <span class="type">int</span> s=sum[i]-sum[i_];</span><br><span class="line">            ans-=<span class="number">3LL</span>*g[<span class="number">-2</span>*s];</span><br><span class="line">            <span class="keyword">if</span>(!s) ans+=<span class="number">2LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans/<span class="number">6LL</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -230,21 +247,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag"># 测试</a>
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/1762347533/" rel="prev" title="CSP2024 地狱难度，一命速通">
-                  <i class="fa fa-angle-left"></i> CSP2024 地狱难度，一命速通
+                <a href="/posts/1918694436/" rel="prev" title="FHQ Treap 详解">
+                  <i class="fa fa-angle-left"></i> FHQ Treap 详解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/3883134504/" rel="next" title="洛谷 P10102 题解">
-                  洛谷 P10102 题解 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

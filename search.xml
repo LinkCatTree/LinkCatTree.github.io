@@ -110,6 +110,36 @@
       </tags>
   </entry>
   <entry>
+    <title>P10036 题解</title>
+    <url>/posts/410536798/</url>
+    <content><![CDATA[<p>一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。</p>
+<span id="more"></span>
+<p>根据题意，$b_x+b_y+b_z=0$，假设 $b_x$ 对应的区间为 $a_{i’+1} \cdots a_i$，$b_y$ 对应 $a_{j’+1} \cdots a_j$，$b_z$ 对应 $a_{k’+1} \cdots a_k$。我们可以使用前缀和优化这个式子：$s_i-s_{i’}+s_j-s_{j’}+s_k-s_{k’}=0$，其中 $s_x=\sum_{i=1}^x a_i$。</p>
+<p>但是我们发现枚举式子右侧的六个变量时间复杂度为 $\mathcal{O}(n^6)$，无法接受，那么我们可以把三项移到右侧，将式子变为：$s_i-s_{i’}+s_j=s_{j’}-s_k+s_{k’}$。这样对两边的枚举时间复杂度均降为 $\mathcal{O}(n^3)$，可以分开枚举（注意实现时要保证 $j’&lt;j$，对此我们可以在计算 $j$ 前更新一遍 $j’$，这样可以在不破坏效率的情况下维护 $j’&lt;j$，具体可见代码）</p>
+<p>但我们发现以上算法有两个问题：</p>
+<ol>
+<li><p>无法保证 $x&lt;y&lt;z$，换句话说就是会重复计算。</p>
+</li>
+<li><p>可能会统计到不合法的答案（如两个相同的区间）</p>
+</li>
+</ol>
+<p>我们重新观察式子，发现：</p>
+<ol>
+<li><p>当 $x,y,z$ 互不相等时，共会计算 $3!=6$ 次。</p>
+</li>
+<li><p>当 $x,y,z$ 中有且仅有两数相等时（不合法），会计算 $2$ 次。</p>
+</li>
+<li><p>当 $x=y=z$（不合法）时，会计算 $1$ 次。</p>
+</li>
+</ol>
+<p>于是我们可以再 $\mathcal{O}(n^2)$ 枚举相等的数，减掉不合法的情况；最终答案即为剩下的合法计数的 $\frac16$。如果对实现或思路有问题，可参考代码（作者太弱了降不太清楚 QAQ）。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">505</span>,Mx=<span class="number">3e7</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> n,a[N],sum[N],f[Mx],base;</span><br><span class="line">map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; g;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">id</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> <span class="built_in">max</span>(x-base<span class="number">+1</span>,<span class="number">0</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="type">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),sum[i]=sum[i<span class="number">-1</span>]+a[i];</span><br><span class="line">        base=<span class="built_in">max</span>(base,sum[i]-tmp),tmp=<span class="built_in">min</span>(tmp,sum[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) g[sum[i]-sum[i_]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    base=tmp-base;</span><br><span class="line">    <span class="comment">// s[i]-s[i&#x27;]+s[j]=s[j&#x27;]-s[k]+s[k&#x27;]</span></span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">        <span class="type">int</span> j_=j<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k_=<span class="number">0</span>;k_&lt;k;k_++)</span><br><span class="line">                f[<span class="built_in">id</span>(sum[j_]-sum[k]+sum[k_])]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++)</span><br><span class="line">                ans+=(ll)f[<span class="built_in">id</span>(sum[i]-sum[i_]+sum[j])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) &#123;</span><br><span class="line">            <span class="type">int</span> s=sum[i]-sum[i_];</span><br><span class="line">            ans-=<span class="number">3LL</span>*g[<span class="number">-2</span>*s];</span><br><span class="line">            <span class="keyword">if</span>(!s) ans+=<span class="number">2LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans/<span class="number">6LL</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>洛谷 P10102 题解</title>
     <url>/posts/3883134504/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P10102">题目传送门</a>。</p>
