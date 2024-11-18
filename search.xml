@@ -1,6 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CSP2024 地狱难度，一命速通</title>
+    <url>/posts/1762347533/</url>
+    <content><![CDATA[<h1 id="10-25"><a href="#10-25" class="headerlink" title="10/25"></a>10/25</h1><p>晚上赶到酒店，吃点东西看了会儿算法书洗洗睡了。</p>
+<h1 id="10-26"><a href="#10-26" class="headerlink" title="10/26"></a>10/26</h1><p>吃早饭时看到好多同学，互相打招呼。早饭好吃捏。</p>
+<h2 id="CSP-J"><a href="#CSP-J" class="headerlink" title="CSP-J"></a>CSP-J</h2><p>去的有点小晚，已经报完解压包密码了，甚至走错地方了……在热心的监考老师的帮助下终于找到路了，紧张捏。</p>
+<p>开题！前三题比较水，30 分钟做完，然后开始磕第四题，做了 1 个小时发现没有什么头绪，果断打暴力，然后检查了一下前三题。</p>
+<p>不得不说 CSP-J 真的太乱啦，开考半个小时才解开 PDF 的比比皆是，各种 xxs（包括但不限于某些小学生）真的很烦，我右边的一直东张西望，还大声念题目，乐子。</p>
+<p>还剩 1 个小时左右，又看了看第 4 题，直到考试结束还是没有思路捏<del>我太弱啦</del>，出了考场同学之间互相打探一下，发现没人 AK，悬着的心终于放下了 QAQ。</p>
+<p>中午吃了一顿 KFC 奢侈一下，睡个午觉，准备迎战 CSP-S。</p>
+<h2 id="CSP-S"><a href="#CSP-S" class="headerlink" title="CSP-S"></a>CSP-S</h2><p>这次吃一堑长一智，去的很早，看了五六遍考生须知，终于等来了解压密码。</p>
+<p>开题之后感觉肚子疼，<del>怀疑中午喝的饮料被下毒了</del>还是坚持做完了前两题，一看时间才三点多一些，<del>感觉好水</del>，喝了两口水接着开 T3，根据刻板印象感觉做不出来于是各种瞎搞骗分，然后做了一个半小时才发现是 DP，感觉被骗了。</p>
+<p>打完 T3 上一趟厕所，回来的时候走错地方了好尴尬，监考老师一直笑眯眯地看着我感觉有点害怕。回来之后磕 T4，发现做不出来，于是果断打了一个暴力，过了样例之后就不管了，检查前三题（此时还没有意识到问题的严重性啊啊啊）。</p>
+<p>交卷之后感觉今年 S 组有点水，1= 分数线可能要 200+ 甚至 300，出来之后碰到同学发现大多 250 左右（更逆天的是 100+60+100+0），感觉自己可能要挂分……（果然挂了）</p>
+<p>讨论做法时发现我们四五个人 T1 做法各不相同，我深深地自我怀疑感觉 T1 要炸（回来测了一下果然没炸，开心），回想起了去年 0+100+0+0 的惨痛经历。</p>
+<p>路上想起来坐在我左边的人好像源代码都放在桌面上了，乐子。</p>
+<p>晚上吃了一顿石锅拌饭，做了两小时车回家。想起来算法书里复习的东西一个都没用到（恼。</p>
+<p>祝大家 CSP-J/S++！</p>
+<h2 id="花絮：关于-S-组-T3-的曲折故事"><a href="#花絮：关于-S-组-T3-的曲折故事" class="headerlink" title="花絮：关于 S 组 T3 的曲折故事"></a>花絮：关于 S 组 T3 的<del>曲折</del>故事</h2><p>考试的时候想正解打了 $\mathcal{O}(n)$ 的 DP，大样例一遍过，自我感觉良好；考完的第二天晚上，我按照比赛时的思路又打了一遍，自测赛中只拿了 25pts，感觉药丸；后来发现是考试后打的代码出了一点问题，调完后就过啦</p>
+<p><del>所以第三题还是对了</del>乐子</p>
+<h2 id="出分了"><a href="#出分了" class="headerlink" title="出分了"></a>出分了</h2><p><del>我要向中国计算机学会举报 CCF 诈骗</del></p>
+<p>J 组 100+100+100+30=330</p>
+<p>S 组 100+100+100+12=312</p>
+<p>我是毛不易，这就是消愁（虽然没挂分 QWQ）</p>
+]]></content>
+      <tags>
+        <tag>游记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P10036 题解</title>
+    <url>/posts/410536798/</url>
+    <content><![CDATA[<p>一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。</p>
+<span id="more"></span>
+<p>根据题意，$b_x+b_y+b_z=0$，假设 $b_x$ 对应的区间为 $a_{i’+1} \cdots a_i$，$b_y$ 对应 $a_{j’+1} \cdots a_j$，$b_z$ 对应 $a_{k’+1} \cdots a_k$。我们可以使用前缀和优化这个式子：$s_i-s_{i’}+s_j-s_{j’}+s_k-s_{k’}=0$，其中 $s_x=\sum_{i=1}^x a_i$。</p>
+<p>但是我们发现枚举式子右侧的六个变量时间复杂度为 $\mathcal{O}(n^6)$，无法接受，那么我们可以把三项移到右侧，将式子变为：$s_i-s_{i’}+s_j=s_{j’}-s_k+s_{k’}$。这样对两边的枚举时间复杂度均降为 $\mathcal{O}(n^3)$，可以分开枚举（注意实现时要保证 $j’&lt;j$，对此我们可以在计算 $j$ 前更新一遍 $j’$，这样可以在不破坏效率的情况下维护 $j’&lt;j$，具体可见代码）</p>
+<p>但我们发现以上算法有两个问题：</p>
+<ol>
+<li><p>无法保证 $x&lt;y&lt;z$，换句话说就是会重复计算。</p>
+</li>
+<li><p>可能会统计到不合法的答案（如两个相同的区间）</p>
+</li>
+</ol>
+<p>我们重新观察式子，发现：</p>
+<ol>
+<li><p>当 $x,y,z$ 互不相等时，共会计算 $3!=6$ 次。</p>
+</li>
+<li><p>当 $x,y,z$ 中有且仅有两数相等时（不合法），会计算 $2$ 次。</p>
+</li>
+<li><p>当 $x=y=z$（不合法）时，会计算 $1$ 次。</p>
+</li>
+</ol>
+<p>于是我们可以再 $\mathcal{O}(n^2)$ 枚举相等的数，减掉不合法的情况；最终答案即为剩下的合法计数的 $\frac16$。如果对实现或思路有问题，可参考代码（作者太弱了降不太清楚 QAQ）。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">505</span>,Mx=<span class="number">3e7</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> n,a[N],sum[N],f[Mx],base;</span><br><span class="line">map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; g;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">id</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> <span class="built_in">max</span>(x-base<span class="number">+1</span>,<span class="number">0</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="type">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),sum[i]=sum[i<span class="number">-1</span>]+a[i];</span><br><span class="line">        base=<span class="built_in">max</span>(base,sum[i]-tmp),tmp=<span class="built_in">min</span>(tmp,sum[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) g[sum[i]-sum[i_]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    base=tmp-base;</span><br><span class="line">    <span class="comment">// s[i]-s[i&#x27;]+s[j]=s[j&#x27;]-s[k]+s[k&#x27;]</span></span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">        <span class="type">int</span> j_=j<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k_=<span class="number">0</span>;k_&lt;k;k_++)</span><br><span class="line">                f[<span class="built_in">id</span>(sum[j_]-sum[k]+sum[k_])]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++)</span><br><span class="line">                ans+=(ll)f[<span class="built_in">id</span>(sum[i]-sum[i_]+sum[j])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) &#123;</span><br><span class="line">            <span class="type">int</span> s=sum[i]-sum[i_];</span><br><span class="line">            ans-=<span class="number">3LL</span>*g[<span class="number">-2</span>*s];</span><br><span class="line">            <span class="keyword">if</span>(!s) ans+=<span class="number">2LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans/<span class="number">6LL</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>P11281 题解</title>
+    <url>/posts/1435751271/</url>
+    <content><![CDATA[<p>本人数学不好，语言可能不严谨，望大佬指出 QwQ</p>
+<p>这道题看起来很复杂，但其实是<strong>诈骗题</strong>。</p>
+<span id="more"></span>
+<p>首先不难发现 $p_x,p_y$ 是一个逆序对。接着，为了确保无论 Aob 怎么选，Blice 都可以使最终自己选的数集与 Aob <strong>完全一致</strong>，我们发现：对于所有逆序对 $p_x,p_y(x&lt;y)$，都有：$p_x=y,p_y=x$。这样，无论 Aob 选了 $(x,y)$ 还是 $(p_x,p_y)$，Blice 都可以做到与 Aob 选的一致。</p>
+<p>为什么呢？我们不妨用反证法进行证明：</p>
+<p>如果一个逆序对 $p_x,p_y(x&lt;y)$ 其中 $p_x=a,p_y=b$ 满足 $a \neq y$ 或 $b \neq x$，那么只要 Aob 一直选择这一对中的 $(a,b)$，Blice 就<strong>肯定</strong>无法做到与 Aob 完全一致。</p>
+<p>根据题目中“无限轮”后平局的定义，当逆序对数为 $x$、轮数为 $n$ 时，易构造出 $\varepsilon=(2x)^{-n}$，根据上述不平局的策略，我们发现不平局的出现概率<strong>至少</strong>为 $(2x)^{-n}$（即 Aob 每次都选择 $(a,b)$），与题目中对“无限轮”后平局的定义矛盾。</p>
+<p>所以能够使 Aob 和 Blice “无限轮”后平局，$p_i$ 必须满足：</p>
+<ol>
+<li><p>$p_i=i$。</p>
+</li>
+<li><p>$p_i=j$ 同时 $p_j=i$（$i \neq j$）</p>
+</li>
+</ol>
+<p>知道这个后，我们就可以开始考虑代码实现了。</p>
+<p>首先显然可以记录下每个数 $x$ 在 $p$ 中出现的位置 $r_x$，如果出现 $r_x \neq p_x$，说明<strong>不可能</strong>平局，输出 $0$ 即可。否则我们可以统计剩下有多少个数能填，对这些数我们求出满足上述两条规则的数列个数即可。</p>
+<p>统计剩下有多少个数能填时要注意分类和细节：</p>
+<ol>
+<li><p>若 $p_x=x$，则能填的数少一。</p>
+</li>
+<li><p>若 $p_x=0$ 但 $r_x \neq 0$，说明 $p_{r_x}=x$ 那么此时 $p_x$ 只能填 $r_x$，那么 $p_x$ 不能填，能填的数少一。</p>
+</li>
+<li><p>若 $p_x \neq 0$，由于已经判断过无解，那么 $p_x$ 不能填，能填的数少一。</p>
+</li>
+</ol>
+<p>接下来看如何计算答案。假设还能填的数有 $cnt$ 个，考虑递推求出答案。设 $f_x$ 表示前 $x$ 个数有多少种合法的填法，易发现：对于第 $x+1$ 个数，如果它满足条件一（$p_x=x$），则有 $f_x$ 中可行的填法；如果它满足条件二（$p_x=y,p_y=x$），那么它必须从前 $x$ 个数中再选一个，再填剩下的数，即有 $x \cdot f_{x-1}$ 种。有次我们你可以得出：</p>
+<p>$f_{x+1}=f_x+x \cdot f_{x-1}$</p>
+<p>判断无解是 $\mathcal{O}(n)$ 的，计算 $cnt$ 是 $\mathcal{O}(n)$ 的，递推求 $f_{cnt}$ 也是 $\mathcal{O}(n)$ 的，总时间复杂度 $\mathcal{O}(n)$。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e6</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">const</span> ll inv=<span class="number">499122177</span>;</span><br><span class="line"><span class="type">int</span> n,a[N],r[N];</span><br><span class="line">ll f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="type">int</span> cnt=n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">        <span class="keyword">if</span>(!a[i]) <span class="keyword">continue</span> ;</span><br><span class="line">        r[a[i]]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(r[i]&amp;&amp;(r[i]!=a[i]&amp;&amp;a[i])) <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>),<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(r[i]) cnt--;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(r[a[i]]) cnt--;</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>]=f[<span class="number">1</span>]=<span class="number">1LL</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=cnt;i++) &#123;</span><br><span class="line">        ll x=i;</span><br><span class="line">        f[i]=(f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>]*(x<span class="number">-1LL</span>)%mod)%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[cnt]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/posts/3632233996/</url>
+    <content><![CDATA[<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello World&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h2><p>$x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$</p>
+<h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><p><strong>粗体</strong>_斜体_<strong><em>又粗又斜</em></strong><del>划掉</del>。</p>
+]]></content>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>洛谷 P10102 题解</title>
+    <url>/posts/3883134504/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P10102">题目传送门</a>。</p>
+<p>发现直接判断 $A \times B=C$ 是 $\mathcal{O}(n^3)$ 的，我们可以在式子两边同时乘上一个 $1 \times n$ 的矩阵 $D$：$D \times A \times B = D \times C$（注意顺序）。这里共有三次矩阵乘法，复杂度均为 $\mathcal{O}(n^2)$。为提高正确率，$D$ 矩阵可采用随机生成。</p>
+<span id="more"></span>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">int</span> T,n;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ch=<span class="built_in">getchar</span>(),minus=<span class="number">0</span>; ll x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>;ch=<span class="built_in">getchar</span>()) minus|=(ch==<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(;ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>;ch=<span class="built_in">getchar</span>()) x=x*<span class="number">10</span>+(ch^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">return</span> minus?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">3005</span>; </span><br><span class="line"><span class="type">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line">ll a[N][N],b[N][N],c[N][N],d[<span class="number">2</span>][N],e[<span class="number">2</span>][N],f[<span class="number">2</span>][N],g[<span class="number">2</span>][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T),<span class="built_in">srand</span>((<span class="type">unsigned</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) a[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) b[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) c[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) d[<span class="number">1</span>][i]=<span class="built_in">rand</span>(),e[<span class="number">1</span>][i]=f[<span class="number">1</span>][i]=g[<span class="number">1</span>][i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) e[<span class="number">1</span>][i]=(e[<span class="number">1</span>][i]+d[<span class="number">1</span>][j]*a[j][i]%mod)%mod;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) f[<span class="number">1</span>][i]=(f[<span class="number">1</span>][i]+e[<span class="number">1</span>][j]*b[j][i]%mod)%mod;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) g[<span class="number">1</span>][i]=(g[<span class="number">1</span>][i]+d[<span class="number">1</span>][j]*c[j][i]%mod)%mod;</span><br><span class="line"></span><br><span class="line">        <span class="type">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">if</span>(f[<span class="number">1</span>][i]!=g[<span class="number">1</span>][i]) &#123;</span><br><span class="line">                flag=<span class="literal">false</span>; <span class="keyword">break</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<p>总时间复杂度 $\mathcal{O}(Tn^2)$，空间复杂度 $\mathcal{O}(n^2)$，<a href="https://www.luogu.com.cn/record/186882036">实际表现</a>。</p>
+<p>不要抄袭，我们共建新洛谷。</p>
+]]></content>
+      <tags>
+        <tag>题解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FHQ Treap 详解</title>
     <url>/posts/1918694436/</url>
     <content><![CDATA[<h1 id="1）FHQ-Treap-基本功能理论与实现"><a href="#1）FHQ-Treap-基本功能理论与实现" class="headerlink" title="1）FHQ-Treap 基本功能理论与实现"></a>1）FHQ-Treap 基本功能理论与实现</h1><p>不同于经典的基于<a href="https://blog.csdn.net/zhaochuanfei666/article/details/110518539">左旋、右旋的 Treap(Splay)</a>，FHQ-Treap 是基于分裂与合并的的一种 Treap。虽然两者操作方式完全不同，但产生的结果是一样的。而且，FHQ-Treap 具有<strong>好写</strong>（打板子超快）、<strong>好理解</strong>（左旋右旋我到现在还没搞明白）以及可持久化、区间翻转、移动等等诸多优点。</p>
@@ -78,91 +200,6 @@
 ]]></content>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CSP2024 地狱难度，一命速通</title>
-    <url>/posts/1762347533/</url>
-    <content><![CDATA[<h1 id="10-25"><a href="#10-25" class="headerlink" title="10/25"></a>10/25</h1><p>晚上赶到酒店，吃点东西看了会儿算法书洗洗睡了。</p>
-<h1 id="10-26"><a href="#10-26" class="headerlink" title="10/26"></a>10/26</h1><p>吃早饭时看到好多同学，互相打招呼。早饭好吃捏。</p>
-<h2 id="CSP-J"><a href="#CSP-J" class="headerlink" title="CSP-J"></a>CSP-J</h2><p>去的有点小晚，已经报完解压包密码了，甚至走错地方了……在热心的监考老师的帮助下终于找到路了，紧张捏。</p>
-<p>开题！前三题比较水，30 分钟做完，然后开始磕第四题，做了 1 个小时发现没有什么头绪，果断打暴力，然后检查了一下前三题。</p>
-<p>不得不说 CSP-J 真的太乱啦，开考半个小时才解开 PDF 的比比皆是，各种 xxs（包括但不限于某些小学生）真的很烦，我右边的一直东张西望，还大声念题目，乐子。</p>
-<p>还剩 1 个小时左右，又看了看第 4 题，直到考试结束还是没有思路捏<del>我太弱啦</del>，出了考场同学之间互相打探一下，发现没人 AK，悬着的心终于放下了 QAQ。</p>
-<p>中午吃了一顿 KFC 奢侈一下，睡个午觉，准备迎战 CSP-S。</p>
-<h2 id="CSP-S"><a href="#CSP-S" class="headerlink" title="CSP-S"></a>CSP-S</h2><p>这次吃一堑长一智，去的很早，看了五六遍考生须知，终于等来了解压密码。</p>
-<p>开题之后感觉肚子疼，<del>怀疑中午喝的饮料被下毒了</del>还是坚持做完了前两题，一看时间才三点多一些，<del>感觉好水</del>，喝了两口水接着开 T3，根据刻板印象感觉做不出来于是各种瞎搞骗分，然后做了一个半小时才发现是 DP，感觉被骗了。</p>
-<p>打完 T3 上一趟厕所，回来的时候走错地方了好尴尬，监考老师一直笑眯眯地看着我感觉有点害怕。回来之后磕 T4，发现做不出来，于是果断打了一个暴力，过了样例之后就不管了，检查前三题（此时还没有意识到问题的严重性啊啊啊）。</p>
-<p>交卷之后感觉今年 S 组有点水，1= 分数线可能要 200+ 甚至 300，出来之后碰到同学发现大多 250 左右（更逆天的是 100+60+100+0），感觉自己可能要挂分……（果然挂了）</p>
-<p>讨论做法时发现我们四五个人 T1 做法各不相同，我深深地自我怀疑感觉 T1 要炸（回来测了一下果然没炸，开心），回想起了去年 0+100+0+0 的惨痛经历。</p>
-<p>路上想起来坐在我左边的人好像源代码都放在桌面上了，乐子。</p>
-<p>晚上吃了一顿石锅拌饭，做了两小时车回家。想起来算法书里复习的东西一个都没用到（恼。</p>
-<p>祝大家 CSP-J/S++！</p>
-<h2 id="花絮：关于-S-组-T3-的曲折故事"><a href="#花絮：关于-S-组-T3-的曲折故事" class="headerlink" title="花絮：关于 S 组 T3 的曲折故事"></a>花絮：关于 S 组 T3 的<del>曲折</del>故事</h2><p>考试的时候想正解打了 $\mathcal{O}(n)$ 的 DP，大样例一遍过，自我感觉良好；考完的第二天晚上，我按照比赛时的思路又打了一遍，自测赛中只拿了 25pts，感觉药丸；后来发现是考试后打的代码出了一点问题，调完后就过啦</p>
-<p><del>所以第三题还是对了</del>乐子</p>
-<h2 id="出分了"><a href="#出分了" class="headerlink" title="出分了"></a>出分了</h2><p><del>我要向中国计算机学会举报 CCF 诈骗</del></p>
-<p>J 组 100+100+100+30=330</p>
-<p>S 组 100+100+100+12=312</p>
-<p>我是毛不易，这就是消愁（虽然没挂分 QWQ）</p>
-]]></content>
-      <tags>
-        <tag>游记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>P10036 题解</title>
-    <url>/posts/410536798/</url>
-    <content><![CDATA[<p>一句话题意：从长度为 $n$ 的数组 $a$ 中取出三个不相同的区间，问有多少种不同的取法使区间和之和为零（无序）。</p>
-<span id="more"></span>
-<p>根据题意，$b_x+b_y+b_z=0$，假设 $b_x$ 对应的区间为 $a_{i’+1} \cdots a_i$，$b_y$ 对应 $a_{j’+1} \cdots a_j$，$b_z$ 对应 $a_{k’+1} \cdots a_k$。我们可以使用前缀和优化这个式子：$s_i-s_{i’}+s_j-s_{j’}+s_k-s_{k’}=0$，其中 $s_x=\sum_{i=1}^x a_i$。</p>
-<p>但是我们发现枚举式子右侧的六个变量时间复杂度为 $\mathcal{O}(n^6)$，无法接受，那么我们可以把三项移到右侧，将式子变为：$s_i-s_{i’}+s_j=s_{j’}-s_k+s_{k’}$。这样对两边的枚举时间复杂度均降为 $\mathcal{O}(n^3)$，可以分开枚举（注意实现时要保证 $j’&lt;j$，对此我们可以在计算 $j$ 前更新一遍 $j’$，这样可以在不破坏效率的情况下维护 $j’&lt;j$，具体可见代码）</p>
-<p>但我们发现以上算法有两个问题：</p>
-<ol>
-<li><p>无法保证 $x&lt;y&lt;z$，换句话说就是会重复计算。</p>
-</li>
-<li><p>可能会统计到不合法的答案（如两个相同的区间）</p>
-</li>
-</ol>
-<p>我们重新观察式子，发现：</p>
-<ol>
-<li><p>当 $x,y,z$ 互不相等时，共会计算 $3!=6$ 次。</p>
-</li>
-<li><p>当 $x,y,z$ 中有且仅有两数相等时（不合法），会计算 $2$ 次。</p>
-</li>
-<li><p>当 $x=y=z$（不合法）时，会计算 $1$ 次。</p>
-</li>
-</ol>
-<p>于是我们可以再 $\mathcal{O}(n^2)$ 枚举相等的数，减掉不合法的情况；最终答案即为剩下的合法计数的 $\frac16$。如果对实现或思路有问题，可参考代码（作者太弱了降不太清楚 QAQ）。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">505</span>,Mx=<span class="number">3e7</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> n,a[N],sum[N],f[Mx],base;</span><br><span class="line">map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; g;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">id</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;<span class="keyword">return</span> <span class="built_in">max</span>(x-base<span class="number">+1</span>,<span class="number">0</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="type">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]),sum[i]=sum[i<span class="number">-1</span>]+a[i];</span><br><span class="line">        base=<span class="built_in">max</span>(base,sum[i]-tmp),tmp=<span class="built_in">min</span>(tmp,sum[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) g[sum[i]-sum[i_]]++;</span><br><span class="line">    &#125;</span><br><span class="line">    base=tmp-base;</span><br><span class="line">    <span class="comment">// s[i]-s[i&#x27;]+s[j]=s[j&#x27;]-s[k]+s[k&#x27;]</span></span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) &#123;</span><br><span class="line">        <span class="type">int</span> j_=j<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k_=<span class="number">0</span>;k_&lt;k;k_++)</span><br><span class="line">                f[<span class="built_in">id</span>(sum[j_]-sum[k]+sum[k_])]++;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++)</span><br><span class="line">                ans+=(ll)f[<span class="built_in">id</span>(sum[i]-sum[i_]+sum[j])];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i_=<span class="number">0</span>;i_&lt;i;i_++) &#123;</span><br><span class="line">            <span class="type">int</span> s=sum[i]-sum[i_];</span><br><span class="line">            ans-=<span class="number">3LL</span>*g[<span class="number">-2</span>*s];</span><br><span class="line">            <span class="keyword">if</span>(!s) ans+=<span class="number">2LL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans/<span class="number">6LL</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>洛谷 P10102 题解</title>
-    <url>/posts/3883134504/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P10102">题目传送门</a>。</p>
-<p>发现直接判断 $A \times B=C$ 是 $\mathcal{O}(n^3)$ 的，我们可以在式子两边同时乘上一个 $1 \times n$ 的矩阵 $D$：$D \times A \times B = D \times C$（注意顺序）。这里共有三次矩阵乘法，复杂度均为 $\mathcal{O}(n^2)$。为提高正确率，$D$ 矩阵可采用随机生成。</p>
-<span id="more"></span>
-<p>代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="type">int</span> T,n;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> ch=<span class="built_in">getchar</span>(),minus=<span class="number">0</span>; ll x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>;ch=<span class="built_in">getchar</span>()) minus|=(ch==<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">    <span class="keyword">for</span>(;ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>;ch=<span class="built_in">getchar</span>()) x=x*<span class="number">10</span>+(ch^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">return</span> minus?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">3005</span>; </span><br><span class="line"><span class="type">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line">ll a[N][N],b[N][N],c[N][N],d[<span class="number">2</span>][N],e[<span class="number">2</span>][N],f[<span class="number">2</span>][N],g[<span class="number">2</span>][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T),<span class="built_in">srand</span>((<span class="type">unsigned</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) a[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) b[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) c[i][j]=<span class="built_in">read</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) d[<span class="number">1</span>][i]=<span class="built_in">rand</span>(),e[<span class="number">1</span>][i]=f[<span class="number">1</span>][i]=g[<span class="number">1</span>][i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) e[<span class="number">1</span>][i]=(e[<span class="number">1</span>][i]+d[<span class="number">1</span>][j]*a[j][i]%mod)%mod;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) f[<span class="number">1</span>][i]=(f[<span class="number">1</span>][i]+e[<span class="number">1</span>][j]*b[j][i]%mod)%mod;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) g[<span class="number">1</span>][i]=(g[<span class="number">1</span>][i]+d[<span class="number">1</span>][j]*c[j][i]%mod)%mod;</span><br><span class="line"></span><br><span class="line">        <span class="type">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">            <span class="keyword">if</span>(f[<span class="number">1</span>][i]!=g[<span class="number">1</span>][i]) &#123;</span><br><span class="line">                flag=<span class="literal">false</span>; <span class="keyword">break</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag) <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-<p>总时间复杂度 $\mathcal{O}(Tn^2)$，空间复杂度 $\mathcal{O}(n^2)$，<a href="https://www.luogu.com.cn/record/186882036">实际表现</a>。</p>
-<p>不要抄袭，我们共建新洛谷。</p>
-]]></content>
-      <tags>
-        <tag>题解</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/posts/3632233996/</url>
-    <content><![CDATA[<h1 id="H1"><a href="#H1" class="headerlink" title="H1"></a>H1</h1><h2 id="H2"><a href="#H2" class="headerlink" title="H2"></a>H2</h2><h3 id="H3"><a href="#H3" class="headerlink" title="H3"></a>H3</h3><h4 id="H4"><a href="#H4" class="headerlink" title="H4"></a>H4</h4><h5 id="H5"><a href="#H5" class="headerlink" title="H5"></a>H5</h5><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Hello World&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="LaTeX"><a href="#LaTeX" class="headerlink" title="LaTeX"></a>LaTeX</h2><p>$x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$</p>
-<h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><p><strong>粗体</strong>_斜体_<strong><em>又粗又斜</em></strong><del>划掉</del>。</p>
-]]></content>
-      <tags>
-        <tag>测试</tag>
       </tags>
   </entry>
 </search>
