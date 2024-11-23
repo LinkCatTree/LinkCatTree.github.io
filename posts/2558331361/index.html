@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"linkcattree.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="其他大神的正解写的很好，我特此来发一篇乱搞做法。 本题解只作参考，主要指出骗分的方法和为什么乱搞做法通过率高（并给出一个乱搞做法），并不是实际意义上的正确做法。（但还是求管理员大大给过 QAQ） 赛时一个一个 subtask 骗分，骗着骗着就 AC 了，感觉好激动。本篇乱搞做法就围绕各 subtask 展开。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P11312 题解">
+<meta property="og:url" content="https://linkcattree.github.io/posts/2558331361/index.html">
+<meta property="og:site_name" content="LinkCatTree">
+<meta property="og:description" content="其他大神的正解写的很好，我特此来发一篇乱搞做法。 本题解只作参考，主要指出骗分的方法和为什么乱搞做法通过率高（并给出一个乱搞做法），并不是实际意义上的正确做法。（但还是求管理员大大给过 QAQ） 赛时一个一个 subtask 骗分，骗着骗着就 AC 了，感觉好激动。本篇乱搞做法就围绕各 subtask 展开。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/519emu4i.png">
+<meta property="article:published_time" content="2024-11-23T14:18:25.000Z">
+<meta property="article:modified_time" content="2024-11-23T14:19:21.523Z">
+<meta property="article:author" content="LinkCatTree">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/519emu4i.png">
+
+
+<link rel="canonical" href="https://linkcattree.github.io/posts/2558331361/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://linkcattree.github.io/posts/2558331361/","path":"posts/2558331361/","title":"P11312 题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>P11312 题解 | LinkCatTree</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">LinkCatTree</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-1"><span class="nav-number">1.</span> <span class="nav-text">subtask 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-2"><span class="nav-number">2.</span> <span class="nav-text">subtask 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-3"><span class="nav-number">3.</span> <span class="nav-text">subtask 3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-4"><span class="nav-number">4.</span> <span class="nav-text">subtask 4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-5"><span class="nav-number">5.</span> <span class="nav-text">subtask 5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#subtask-6"><span class="nav-number">6.</span> <span class="nav-text">subtask 6</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="LinkCatTree"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">LinkCatTree</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/LinkCatTree" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;LinkCatTree" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Time1essWelkin@outlook.com" title="E-Mail → mailto:Time1essWelkin@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://linkcattree.github.io/posts/2558331361/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="LinkCatTree">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LinkCatTree">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="P11312 题解 | LinkCatTree">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          P11312 题解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-23 22:18:25 / 修改时间：22:19:21" itemprop="dateCreated datePublished" datetime="2024-11-23T22:18:25+08:00">2024-11-23</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>其他大神的正解写的很好，我特此来发一篇乱搞做法。</p>
+<p>本题解只作参考，主要指出骗分的方法和为什么乱搞做法通过率高（并给出一个乱搞做法），<strong>并不是</strong>实际意义上的正确做法。（但还是求管理员大大给过 QAQ）</p>
+<p>赛时一个一个 subtask 骗分，骗着骗着就 AC 了，感觉好激动。本篇乱搞做法就围绕各 subtask 展开。</p>
+<span id="more"></span>
+<h1 id="subtask-1"><a href="#subtask-1" class="headerlink" title="subtask 1"></a>subtask 1</h1><p>$k=1$ 时，由于任意两数的最大公约数至少为 $l$，所以肯定有解并随意输出区间中的数即可。</p>
+<h1 id="subtask-2"><a href="#subtask-2" class="headerlink" title="subtask 2"></a>subtask 2</h1><p>观察到 $n$ 和锁圈的拨动范围极小，直接暴力 dfs 即可。</p>
+<h1 id="subtask-3"><a href="#subtask-3" class="headerlink" title="subtask 3"></a>subtask 3</h1><p>直接枚举最大公约数，$\mathcal{O}(n)$ 判断是否可行，由于最大公约数肯定不超过 $\min_{i=1}^n r_i$，所以时间复杂度是可接受的。</p>
+<h1 id="subtask-4"><a href="#subtask-4" class="headerlink" title="subtask 4"></a>subtask 4</h1><p>由于 $l,r$ 随机生成，所以其间包含的数期望会比较多，又因为 $k$ 比较小，大概率有解，直接计算任意一个不小于 $l_i$ 且不大于 $r_i$ 的数输出即可。</p>
+<h1 id="subtask-5"><a href="#subtask-5" class="headerlink" title="subtask 5"></a>subtask 5</h1><p>由于存在 $l_i=r_i$，所以这个锁圈只能选择 $l_i$，所以最大公约数肯定为 $l_i$ 的因数。可以 $\mathcal{O}(\sqrt{l})$ 枚举因数并 $\mathcal{O}(n)$ 判断即可。这里有个小技巧，如果有多个 $l_i=r_i$ 时，我们可以直接记录这些 $l_i$ 的最大公约数并只枚举其因数即可。</p>
+<h1 id="subtask-6"><a href="#subtask-6" class="headerlink" title="subtask 6"></a>subtask 6</h1><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/519emu4i.png" alt=""></p>
+<p>玄学。赛时由于数据交水，直接暴力从 $k$ 开始枚举到 $\min_{i=1}^n r_i$ 并 $\mathcal{O}(n)$ 判断可过。加强了数据后就挂了，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/190711027">会 T 一个点</a>。</p>
+<p>不妨想一想为什么会超时。我们发现有两个可能：</p>
+<ol>
+<li><p>最终合法的最大公约数过大。</p>
+</li>
+<li><p>由于判断的顺序导致每一次判断都会 $\mathcal{O}(n)$ 跑满减慢程序运行。</p>
+</li>
+</ol>
+<p>争对第一点，由于公约数大，所以要么各个区间会产生重叠（每个区间包含这个数），要么导致 $n$ 减小、区间变小（每个区间包含这个数的两倍、三倍……可以发现因为最大公约数很大，所以区间数也相应会减少，虽然这么说并不严谨）。可以判断是否所有区间有重叠部分<del>和精妙的玄学方法</del>来解决问题。</p>
+<p>对于第二点，我们略作思考，可以随机变换原序列的顺序，来尽量防止特意构造的数据把每一次 $n$ 次判断跑满。注意，这只能<strong>减少</strong>程序效率降低的概率，并不能<strong>真正</strong>地提高程序的效率。</p>
+<p>综上所述，可得代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e4</span><span class="number">+5</span>;</span><br><span class="line"><span class="type">int</span> T,n,k,chose[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">    <span class="type">int</span> l,r,id;</span><br><span class="line">&#125; a[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;n) &#123;</span><br><span class="line">        <span class="type">int</span> gcd=chose[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++) gcd=__gcd(gcd,chose[i]);</span><br><span class="line">        <span class="keyword">if</span>(gcd&gt;=k) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[i]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=a[x].l;i&lt;=a[x].r;i++) &#123;</span><br><span class="line">        chose[a[x].id]=i;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(x<span class="number">+1</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--) &#123;</span><br><span class="line">        <span class="type">int</span> mxl=<span class="number">0</span>,mnl=<span class="number">1e9</span>,mxr=<span class="number">0</span>,mnr=<span class="number">1e9</span>;</span><br><span class="line">        <span class="type">bool</span> subtask=<span class="literal">true</span>;</span><br><span class="line">        <span class="type">int</span> sbtask=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;a[i].l,&amp;a[i].r);</span><br><span class="line">            a[i].id=i;</span><br><span class="line">            <span class="keyword">if</span>(a[i].r-a[i].l&gt;<span class="number">4</span>) subtask=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span>(a[i].l==a[i].r) sbtask=__gcd(sbtask,a[i].l);</span><br><span class="line">            mxr=<span class="built_in">max</span>(mxr,a[i].r),mnr=<span class="built_in">min</span>(mnr,a[i].r);</span><br><span class="line">            mxl=<span class="built_in">max</span>(mxl,a[i].l),mnl=<span class="built_in">min</span>(mnl,a[i].l);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">random_shuffle</span>(a<span class="number">+1</span>,a<span class="number">+1</span>+n);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(k==<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) chose[a[i].id]=a[i].l;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[i]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(mxr&lt;=<span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="type">bool</span> ans=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=k;i&lt;=mxr;i++) &#123;</span><br><span class="line">                <span class="type">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">                    <span class="keyword">if</span>(((a[j].l<span class="number">-1</span>)/i<span class="number">+1</span>)*i&gt;a[j].r) &#123;</span><br><span class="line">                        flag=<span class="literal">false</span>; <span class="keyword">break</span> ;</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) chose[a[j].id]=((a[j].l<span class="number">-1</span>)/i<span class="number">+1</span>)*i;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[j]);</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>),ans=<span class="literal">true</span>; <span class="keyword">break</span> ;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!ans) <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">            <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(subtask) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">dfs</span>(<span class="number">1</span>)) <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">            <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sbtask) &#123;</span><br><span class="line">            <span class="type">bool</span> ans=<span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=k;i*i&lt;=sbtask;i++)</span><br><span class="line">                <span class="keyword">if</span>(sbtask) &#123;</span><br><span class="line">                    <span class="type">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">                        <span class="keyword">if</span>(((a[j].l<span class="number">-1</span>)/i<span class="number">+1</span>)*i&gt;a[j].r) &#123;</span><br><span class="line">                            flag=<span class="literal">false</span>; <span class="keyword">break</span> ;</span><br><span class="line">                        &#125;</span><br><span class="line">                    <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) chose[a[j].id]=((a[j].l<span class="number">-1</span>)/i<span class="number">+1</span>)*i;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[j]);</span><br><span class="line">                        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>),ans=<span class="literal">true</span>; <span class="keyword">break</span> ;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(!ans) <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">            <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k&lt;=<span class="number">5</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) chose[a[i].id]=a[i].l/<span class="number">5</span>*<span class="number">5</span><span class="number">+5</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[i]);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); <span class="keyword">continue</span> ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">bool</span> ans=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=k;i&lt;=mnr;i++) &#123;</span><br><span class="line">            <span class="type">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">                <span class="keyword">if</span>(!((a[j].l<span class="number">-1</span>)/i&lt;a[j].r/i)) &#123;</span><br><span class="line">                    flag=<span class="literal">false</span>; <span class="keyword">break</span> ;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag) &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Yes\n&quot;</span>);</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) chose[a[j].id]=((a[j].l<span class="number">-1</span>)/i<span class="number">+1</span>)*i;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;j++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,chose[j]);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>),ans=<span class="literal">true</span>; <span class="keyword">break</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!ans) <span class="built_in">printf</span>(<span class="string">&quot;No\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/1435751271/" rel="prev" title="P11281 题解">
+                  <i class="fa fa-angle-left"></i> P11281 题解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">LinkCatTree</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
